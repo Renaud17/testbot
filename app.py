@@ -144,9 +144,8 @@ def help_command(update: Update, _: CallbackContext) -> None:
 
 
 def run_bot(update: Update, _: CallbackContext) -> None:
-    replica = update.message.text
-    #answer = make_reply(msg)
-    answer = bot_initialize(replica)
+    replic = update.message.text
+    answer = bot_initialize(replic)
     update.message.reply_text(answer)
 
 
