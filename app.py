@@ -90,7 +90,9 @@ def bot_initialize(user_msg):
         
         if (user_intent !=''):
             if (user_response == '/start'):
-                resp = """Salut je  suis HSEbot une intelligence artificielle qui t'aide à identifier les dangers et les risques ainsi qu'à les prévenirs.Mon créateur est Dahou Renaud L:https://www.linkedin.com/in/dahou-renaud-louis-8958599a/\n\nComment puis-je t'aider ?\n\nTapez Bye pour quitter."""
+                #resp = """Salut je  suis HSEbot une intelligence artificielle qui t'aide à identifier les dangers et les risques ainsi qu'à les prévenirs.Mon créateur est Dahou Renaud L:https://www.linkedin.com/in/dahou-renaud-louis-8958599a/\n\nComment puis-je t'aider ?\n\nTapez Bye pour quitter."""
+                user = update.effective_user 
+                resp=update.message.reply_markdown_v2(f"Salut {user.mention_markdown_v2()}\! je  suis HSEbot une intelligence artificielle qui t'aide à identifier les dangers et les risques ainsi qu'à les prévenirs.Mon créateur est Dahou Renaud L:https://www.linkedin.com/in/dahou-renaud-louis-8958599a/\n\nComment puis-je t'aider ?\n\nTapez Bye pour quitter.",reply_markup=ForceReply(selective=True),)
                 return resp
             
             elif (user_intent == 'salutation'):
@@ -132,11 +134,6 @@ def bot_initialize(user_msg):
             return resp
 
         
-
-def make_reply(msg):
-    if msg is not None:
-        reply = bot_initialize(msg)
-        return reply
 
 
 from telegram import Update, ForceReply
