@@ -148,7 +148,7 @@ def run_bot(update: Update, _: CallbackContext) -> None:
 
     
     
-j = updater.job_queue
+j = Updater.job_queue
 def once(context: CallbackContext):
     message = "Hello, this message will be sent only once"
     # send message to all users
