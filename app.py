@@ -79,8 +79,8 @@ def intent(user_response):
 from telegram import Update, ForceReply
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 
-#daily message
-def callback_alarm(context: telegram.ext.CallbackContext):
+#daily message 
+def callback_alarm(context: CallbackContext):
   bot.send_message(chat_id=id, text="Bonjour, c'est le rappel quotidien des règles d'or sécurité")
 
 def reminder(update,context):
