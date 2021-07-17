@@ -148,17 +148,16 @@ def run_bot(update: Update, _: CallbackContext) -> None:
 
     
     
-def shed_bot(update: Update, _: CallbackContext) -> None:
-    my_balance = 10   ## Replace this number with an API call to fetch your account balance
-    my_message = "Current balance is: {}".format(my_balance)   ## Customize your message
-    update.message.reply_text(my_message)
+j = updater.job_queue
+def once(context: CallbackContext):
+    message = "Hello, this message will be sent only once"
+    # send message to all users
+    for keys in db_keys:
+        id = r.get(keys).decode("UTF-8")
+        context.bot.send_message(chat_id=id, text=message)
 
-schedule.every().day.at("00:00").do(shed_bot)
+job_daily = j.run_daily(daily_suggestion, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=00, minute=00, second=00))
 
-while True:
-    schedule.run_pending()
-    time.sleep(1)
-    
 def main() -> None:
     """Start the bot."""
     updater = Updater("1897550776:AAH0_hlKlosWvBm6J8kvJUOzVO3JqDLby9w")
