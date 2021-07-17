@@ -77,7 +77,7 @@ def intent(user_response):
 
 import time
 from telegram import Update, ForceReply
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext,InlineQueryHandler
 
 
     
