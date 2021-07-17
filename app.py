@@ -75,7 +75,8 @@ def intent(user_response):
     return intent_predicted
 
 
-
+import time
+import schedule
 from telegram import Update, ForceReply
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 
@@ -145,7 +146,19 @@ def run_bot(update: Update, _: CallbackContext) -> None:
     answer = bot_initialize(replic)
     update.message.reply_text(answer)
 
+    
+    
+def shed_bot(update: Update, _: CallbackContext) -> None:
+    my_balance = 10   ## Replace this number with an API call to fetch your account balance
+    my_message = "Current balance is: {}".format(my_balance)   ## Customize your message
+    update.message.reply_text(my_message)
 
+schedule.every().day.at("00:00").do(shed_bot)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+    
 def main() -> None:
     """Start the bot."""
     updater = Updater("1897550776:AAH0_hlKlosWvBm6J8kvJUOzVO3JqDLby9w")
