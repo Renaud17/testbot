@@ -147,16 +147,7 @@ def run_bot(update: Update, _: CallbackContext) -> None:
     update.message.reply_text(answer)
 
     
-    
-j = Updater.job_queue
-def once(context: CallbackContext):
-    message = "Hello, this message will be sent only once"
-    # send message to all users
-    for keys in db_keys:
-        id = r.get(keys).decode("UTF-8")
-        context.bot.send_message(chat_id=id, text=message)
 
-job_daily = j.run_daily(daily_suggestion, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=00, minute=00, second=00))
 
 def main() -> None:
     """Start the bot."""
