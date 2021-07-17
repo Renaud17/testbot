@@ -1,4 +1,5 @@
 python-telegram-bot
+schedule
 joblib
 nltk
 psycopg2
