@@ -74,12 +74,13 @@ def intent(user_response):
     intent_predicted = responses[predicted_intent[0]]['intent']
     return intent_predicted
 
-import logging
-from typing import NoReturn
-from time import sleep
-import telegram
-from telegram.error import NetworkError, Unauthorized
-import json
+#daily message
+def callback_alarm(context: telegram.ext.CallbackContext):
+  bot.send_message(chat_id=id, text="Bonjour, c'est le rappel quotidien des règles d'or sécurité")
+
+def reminder(update,context):
+   bot.send_message(chat_id = update.effective_chat.id , text='Daily reminder has been set! You\'ll get notified at 8 AM daily')
+   context.job_queue.run_daily(callback_alarm, context=update.message.chat_id,days=(0, 1, 2, 3, 4, 5, 6),time = time(hour =14, minute = 00, second = 10))
 
 
 def bot_initialize(user_msg):
