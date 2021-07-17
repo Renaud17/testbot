@@ -148,7 +148,6 @@ def run_bot(update: Update, _: CallbackContext) -> None:
 
     
 
-
 def main() -> None:
     """Start the bot."""
     updater = Updater("1897550776:AAH0_hlKlosWvBm6J8kvJUOzVO3JqDLby9w")
