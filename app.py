@@ -76,11 +76,11 @@ def intent(user_response):
 
 
 import time
-import schedule
 from telegram import Update, ForceReply
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 
 
+    
 def bot_initialize(user_msg):
     flag=True
     while(flag==True):
@@ -133,7 +133,11 @@ def bot_initialize(user_msg):
         
 
 
+def sayhi(bot, job):
+    job.context.message.reply_text("hi")
 
+def time(bot, update,job_queue):
+    job = job_queue.run_repeating(sayhi, 5, context=update)
 
 
 def help_command(update: Update, _: CallbackContext) -> None:
@@ -155,6 +159,7 @@ def main() -> None:
     dispatcher = updater.dispatcher
     dispatcher.add_handler(CommandHandler("help", help_command))
     dispatcher.add_handler(MessageHandler(Filters.text, run_bot))
+    dispatcher.add_handler(MessageHandler(Filters.text , time,pass_job_queue=True))
 
     # Start the Bot
     updater.start_polling()
