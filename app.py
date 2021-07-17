@@ -74,6 +74,11 @@ def intent(user_response):
     intent_predicted = responses[predicted_intent[0]]['intent']
     return intent_predicted
 
+
+
+from telegram import Update, ForceReply
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+
 #daily message
 def callback_alarm(context: telegram.ext.CallbackContext):
   bot.send_message(chat_id=id, text="Bonjour, c'est le rappel quotidien des règles d'or sécurité")
@@ -135,8 +140,7 @@ def bot_initialize(user_msg):
         
 
 
-from telegram import Update, ForceReply
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+
 
 
 def help_command(update: Update, _: CallbackContext) -> None:
