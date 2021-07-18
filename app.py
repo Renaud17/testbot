@@ -135,16 +135,8 @@ def bot_initialize(user_msg):
         
 
 
-def sayhi(bot, job):
-    job.context.message.reply_text("hi")
+import datetime 
 
-def time(bot, update,job_queue):
-    job = job_queue.run_repeating(sayhi, 5, context=update)
-
-
-def help_command(update: Update, _: CallbackContext) -> None:
-    """Send a message when the command /help is issued."""
-    update.message.reply_text('Help!')
 
 
 def run_bot(update: Update, _: CallbackContext) -> None:
@@ -157,11 +149,21 @@ def run_bot(update: Update, _: CallbackContext) -> None:
 def main() -> None:
     """Start the bot."""
     updater = Updater("1897550776:AAH0_hlKlosWvBm6J8kvJUOzVO3JqDLby9w")
+    
+    j= updater.job_queue
+
+    def start(update, context):
+        context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
+
+    t= datetime.time(15, 50, 00, 000000)
+
+    j.run_daily(start, t, days=(0, 1, 2, 3, 4, 5, 6), context=None, name=None)
+    
 
     dispatcher = updater.dispatcher
     dispatcher.add_handler(CommandHandler("help", help_command))
     dispatcher.add_handler(MessageHandler(Filters.text, run_bot))
-    dispatcher.add_handler(MessageHandler(Filters.text , time,pass_job_queue=True))
+    
 
     # Start the Bot
     updater.start_polling()
