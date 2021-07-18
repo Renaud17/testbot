@@ -132,10 +132,7 @@ def bot_initialize(user_msg):
             resp = "Mais vous ne m'avez posé aucune question"+ ", comment puis-je vous aider?" #random.choice(responses[2]['response'])
             return resp
 
-        
-
-
-import datetime 
+       
 
 
 
@@ -150,16 +147,6 @@ def main() -> None:
     """Start the bot."""
     updater = Updater("1897550776:AAH0_hlKlosWvBm6J8kvJUOzVO3JqDLby9w")
     
-    j= updater.job_queue
-
-    def start(update, context):
-        context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
-
-    t= datetime.time(15, 50, 00, 000000)
-
-    j.run_daily(start, t, days=(0, 1, 2, 3, 4, 5, 6), context=None, name=None)
-    
-
     dispatcher = updater.dispatcher
     dispatcher.add_handler(CommandHandler("help", help_command))
     dispatcher.add_handler(MessageHandler(Filters.text, run_bot))
