@@ -135,6 +135,9 @@ def bot_initialize(user_msg):
        
 
 
+def help_command(update: Update, _: CallbackContext) -> None:
+    """Send a message when the command /help is issued."""
+    update.message.reply_text('Help!')
 
 def run_bot(update: Update, _: CallbackContext) -> None:
     replic = update.message.text
